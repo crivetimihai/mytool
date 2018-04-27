@@ -28,5 +28,4 @@ deploy:
   file: sdist/*.tar.gz
   on:
     tags: true
-    branch: master
     repo: crivetimihai/mytool
