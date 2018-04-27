@@ -2,20 +2,29 @@ language: python
 
 matrix:
   include:
-    - python: 3.6
-      env: TOXENV=py36
+  - python: 3.6
+    env: TOXENV=py36
 
 install:
-    - pip install -r requirements.txt
-    - pip install .
+- pip install -r requirements.txt
+- pip install .
 
 script:
-    - tox
-    - coverage run -m py.test
-    - coverage report -m
+- tox
+- coverage run -m py.test
+- coverage report -m
 
 notifications:
   email: false
 
 after_success:
-  - coveralls
+- python setup.py sdist
+
+deploy:
+  provider: releases
+  api_key:
+    secure: DXIDpFILGem4AmKNlXvfaYOkBOGsnTfA9CPScbVJK8/xjQ2ki0tlPVc49C0XT3s8gtz+2OIxtTvJdxvZT1rwLPgFoi0yW8GmqoVg4EdCCXJe/Rn1UkMDzJkdv+Peq67MOtQergxH/7VgjtZT23wmCT5eo/6YLvLY/kLxhTEvQZdEmF8y5gO50KD4+MicX63ofX1YYmJ8GEHn4OakGQldyqm6cVbPZljWEaYpYd+G/nlZ4yZSl7+dC/XhzuB4gboMuxwAGL13xRhlELxuH2yaQfVh5HJVNPB0M93b4msI4oRBbk3xLDjG09hlKDG1sWa3cJJA9R2z+R0b78NOBF59o2ndm0uEKRtgpy/9VW525Qed+M9nASj+Y4pYF+H5mDPVM0nRG8wCC7QKHv7I34/Y+vuxTe/fuAI5OQfRrkS7RyqdHHyEpYuWU0NG4fUSxlJjgzFpHOJ0VJZAw4jZT6pPOsSvlhnWRqvix7IvNOxCrMbfXb8VHcTnSpCT2zVgkMFKaoLRGNrVa49LxFR1iElcJHftdKWUR0BmgqgHmCfCNR6h129tZOGizb//VWwhgoJPicAHDw+5fObDfgpvH9ZemZXrXoQC/4nBwTJZIPWpKh6g+xGbr7o/ZOhwbbF2OquTDghQqHnkAgbc8LABBVzg0ngQN3+dyYZ5r/H/bDU/Pts=
+  file_glob: true
+  file: sdist/*.tar.gz
+  on:
+    repo: crivetimihai/mytool
