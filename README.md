@@ -9,6 +9,7 @@ Usage
 Installation
 ------------
 pip
+tox
 
 Requirements
 ------------
