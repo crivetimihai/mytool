@@ -5,10 +5,17 @@ matrix:
     - python: 3.6
       env: TOXENV=py36
 
-install: pip install tox
+install:
+    - pip install -r requirements.txt
+    - pip install .
 
-script: tox
+script:
+    - tox
+    - coverage run -m py.test
+    - coverage report -m
 
 notifications:
   email: false
 
+after_success:
+  - coveralls

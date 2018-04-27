@@ -3,3 +3,5 @@
 # Build dependencies
 tox
 pytest
+coverage
+pytest-cov
